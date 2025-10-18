@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Coordinador | Saber PRO</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">🎓</div>
+                <h2 class="sidebar-title">Saber PRO</h2>
+                <p class="sidebar-subtitle">Sistema de Gestión</p>
+            </div>
+
+            <nav>
+                <ul class="sidebar-menu">
+                    <li class="menu-item active">
+                        <a href="coordinador-dashboard.html">
+                            <span class="menu-icon">🏠</span>
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="coordinador-estudiantes.html">
+                            <span class="menu-icon">👥</span>
+                            <span class="menu-text">Estudiantes</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="coordinador-puntajes.html">
+                            <span class="menu-icon">📊</span>
+                            <span class="menu-text">Puntajes</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="coordinador-reportes.html">
+                            <span class="menu-icon">📈</span>
+                            <span class="menu-text">Reportes</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="connection-status connected" id="connectionStatus">
+                    <span class="status-dot connected"></span>
+                    <span>Conectado a BD</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Bienvenido, <span id="userName">Coordinador</span></h1>
+                    <p>Gestiona estudiantes y resultados del Saber PRO</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">C</div>
+                        <div class="user-details">
+                            <span class="user-name" id="userFullName">Coordinador</span>
+                            <span class="user-role">Coordinador</span>
+                        </div>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">
+                        🚪
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon primary">👥</div>
+                        <div class="stat-details">
+                            <h3 class="stat-value" id="totalEstudiantes">0</h3>
+                            <p class="stat-label">Total Estudiantes</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon success">✅</div>
+                        <div class="stat-details">
+                            <h3 class="stat-value" id="estudiantesActivos">0</h3>
+                            <p class="stat-label">Estudiantes Activos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Cards -->
+                <div class="action-cards">
+                    <div class="action-card" onclick="window.location.href='/coordinador-estudiantes.html'">
+                        <div class="action-icon">👥</div>
+                        <h3 class="action-title">Gestionar Estudiantes</h3>
+                        <p class="action-description">
+                            Ver, crear, editar y eliminar estudiantes del sistema
+                        </p>
+                    </div>
+
+                    <div class="action-card" onclick="window.location.href='/coordinador-puntajes.html'">
+                        <div class="action-icon">📝</div>
+                        <h3 class="action-title">Registrar Puntajes</h3>
+                        <p class="action-description">
+                            Ingresar y actualizar puntajes de Saber PRO
+                        </p>
+                    </div>
+
+                    <div class="action-card" onclick="window.location.href='/coordinador-reportes.html'">
+                        <div class="action-icon">📊</div>
+                        <h3 class="action-title">Ver Reportes</h3>
+                        <p class="action-description">
+                            Estadísticas y análisis de resultados
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Recent Students -->
+                <div class="recent-students">
+                    <div class="section-header">
+                        <h2 class="section-title">Estudiantes Recientes</h2>
+                        <a href="coordinador-estudiantes.html" class="btn btn-outline">Ver todos →</a>
+                    </div>
+
+                    <ul class="student-list" id="recentStudentsList">
+                        <!-- Se llenará dinámicamente -->
+                        <li class="empty-state">
+                            <div class="empty-icon">📭</div>
+                            <p>No hay estudiantes registrados aún</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/coordinador.js"></script>
+</body>
+</html>

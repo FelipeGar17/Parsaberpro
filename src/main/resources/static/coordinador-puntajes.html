@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Puntajes | Saber PRO</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/puntajes.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">🎓</div>
+                <h2 class="sidebar-title">Saber PRO</h2>
+                <p class="sidebar-subtitle">Sistema de Gestión</p>
+            </div>
+
+            <nav>
+                <ul class="sidebar-menu">
+                    <li class="menu-item">
+                        <a href="/coordinador-dashboard.html">
+                            <span class="menu-icon">🏠</span>
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/coordinador-estudiantes.html">
+                            <span class="menu-icon">👥</span>
+                            <span class="menu-text">Estudiantes</span>
+                        </a>
+                    </li>
+                    <li class="menu-item active">
+                        <a href="/coordinador-puntajes.html">
+                            <span class="menu-icon">📊</span>
+                            <span class="menu-text">Puntajes</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/coordinador-reportes.html">
+                            <span class="menu-icon">📈</span>
+                            <span class="menu-text">Reportes</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="connection-status connected" id="connectionStatus">
+                    <span class="status-dot connected"></span>
+                    <span>Conectado a BD</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Gestión de Puntajes</h1>
+                    <p>Registra los resultados del Saber PRO</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">C</div>
+                        <div class="user-details">
+                            <span class="user-name" id="userFullName">Coordinador</span>
+                            <span class="user-role">Coordinador</span>
+                        </div>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">
+                        🚪 Cerrar Sesión
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Formulario de Registro -->
+                <div class="puntajes-form-card">
+                    <div class="card-header">
+                        <h2>📊 Registrar Puntajes</h2>
+                        <p>Busca al estudiante por su número de registro</p>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Búsqueda de Estudiante -->
+                        <div class="search-student-section">
+                            <div class="form-group">
+                                <label for="numeroRegistroBuscar">Número de Registro</label>
+                                <div class="search-input-group">
+                                    <input 
+                                        type="text" 
+                                        id="numeroRegistroBuscar" 
+                                        placeholder="Ej: REG1729204843123"
+                                        onkeypress="if(event.key === 'Enter') buscarEstudiante()"
+                                    >
+                                    <button class="btn btn-primary" onclick="buscarEstudiante()">
+                                        🔍 Buscar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Info del Estudiante (se muestra al buscar) -->
+                            <div id="estudianteInfo" class="estudiante-info" style="display: none;">
+                                <div class="info-card">
+                                    <div class="info-header">
+                                        <span class="info-icon">✅</span>
+                                        <h3>Estudiante Encontrado</h3>
+                                    </div>
+                                    <div class="info-body">
+                                        <p><strong>Nombre:</strong> <span id="estudianteNombre"></span></p>
+                                        <p><strong>Documento:</strong> <span id="estudianteDocumento"></span></p>
+                                        <p><strong>Programa:</strong> <span id="estudiantePrograma"></span></p>
+                                        <p><strong>Estado:</strong> <span id="estudianteEstado" class="badge"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Formulario de Puntajes (se muestra al encontrar estudiante) -->
+                        <form id="puntajesForm" style="display: none;" onsubmit="registrarPuntajes(event)">
+                            <input type="hidden" id="estudianteId">
+                            <input type="hidden" id="numeroRegistro">
+
+                            <!-- Checkbox Anulado -->
+                            <div class="anulado-section">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="anulado" onchange="togglePuntajesFields()">
+                                    <span class="checkmark"></span>
+                                    <span class="checkbox-label">
+                                        ❌ <strong>Marcar como ANULADO</strong> (el estudiante no presentó o tuvo irregularidades)
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div id="puntajesFields">
+                                <div class="puntajes-grid">
+                                <!-- Puntaje Global -->
+                                <div class="puntaje-item puntaje-global">
+                                    <label for="puntajeGlobal">🏆 Puntaje Global *</label>
+                                    <input 
+                                        type="number" 
+                                        id="puntajeGlobal" 
+                                        min="0" 
+                                        max="300" 
+                                        required
+                                        placeholder="0-300"
+                                    >
+                                    <span class="nivel-badge" id="nivelGlobal"></span>
+                                </div>
+
+                                <!-- Comunicación Escrita -->
+                                <div class="puntaje-item">
+                                    <label for="comunicacionEscrita">📝 Comunicación Escrita *</label>
+                                    <input 
+                                        type="number" 
+                                        id="comunicacionEscrita" 
+                                        min="0" 
+                                        max="300" 
+                                        required
+                                        placeholder="0-300"
+                                        onchange="actualizarNivel(this.value, 'nivelComunicacion')"
+                                    >
+                                    <span class="nivel-badge" id="nivelComunicacion"></span>
+                                </div>
+
+                                <!-- Razonamiento Cuantitativo -->
+                                <div class="puntaje-item">
+                                    <label for="razonamientoCuantitativo">🔢 Razonamiento Cuantitativo *</label>
+                                    <input 
+                                        type="number" 
+                                        id="razonamientoCuantitativo" 
+                                        min="0" 
+                                        max="300" 
+                                        required
+                                        placeholder="0-300"
+                                        onchange="actualizarNivel(this.value, 'nivelRazonamiento')"
+                                    >
+                                    <span class="nivel-badge" id="nivelRazonamiento"></span>
+                                </div>
+
+                                <!-- Lectura Crítica -->
+                                <div class="puntaje-item">
+                                    <label for="lecturaCritica">📖 Lectura Crítica *</label>
+                                    <input 
+                                        type="number" 
+                                        id="lecturaCritica" 
+                                        min="0" 
+                                        max="300" 
+                                        required
+                                        placeholder="0-300"
+                                        onchange="actualizarNivel(this.value, 'nivelLectura')"
+                                    >
+                                    <span class="nivel-badge" id="nivelLectura"></span>
+                                </div>
+
+                                <!-- Competencias Ciudadanas -->
+                                <div class="puntaje-item">
+                                    <label for="competenciasCiudadanas">👥 Competencias Ciudadanas *</label>
+                                    <input 
+                                        type="number" 
+                                        id="competenciasCiudadanas" 
+                                        min="0" 
+                                        max="300" 
+                                        required
+                                        placeholder="0-300"
+                                        onchange="actualizarNivel(this.value, 'nivelCompetencias')"
+                                    >
+                                    <span class="nivel-badge" id="nivelCompetencias"></span>
+                                </div>
+
+                                <!-- Inglés -->
+                                <div class="puntaje-item">
+                                    <label for="ingles">🌍 Inglés *</label>
+                                    <input 
+                                        type="number" 
+                                        id="ingles" 
+                                        min="0" 
+                                        max="300" 
+                                        required
+                                        placeholder="0-300"
+                                        onchange="actualizarNivel(this.value, 'nivelIngles')"
+                                    >
+                                    <span class="nivel-badge" id="nivelIngles"></span>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div id="formAlert" class="alert" style="display: none;"></div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" onclick="limpiarFormulario()">
+                                    🔄 Limpiar
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="btnGuardar">
+                                    💾 Guardar Puntajes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Tabla de Estudiantes -->
+                <div class="estudiantes-status-card">
+                    <div class="card-header">
+                        <h2>📋 Estado de Estudiantes</h2>
+                        <div class="stats-pills">
+                            <span class="pill pill-success">
+                                <span class="pill-dot"></span>
+                                Con puntajes: <strong id="countConPuntajes">0</strong>
+                            </span>
+                            <span class="pill pill-warning">
+                                <span class="pill-dot"></span>
+                                Sin puntajes: <strong id="countSinPuntajes">0</strong>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="status-table">
+                            <thead>
+                                <tr>
+                                    <th>N° Registro</th>
+                                    <th>Estudiante</th>
+                                    <th>Programa</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="estudiantesTableBody">
+                                <tr>
+                                    <td colspan="5" class="empty-state-cell">
+                                        <div class="empty-icon">📭</div>
+                                        <p>Cargando estudiantes...</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/puntajes.js"></script>
+</body>
+</html>

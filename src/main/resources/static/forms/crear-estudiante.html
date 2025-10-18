@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Estudiante</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/estudiantes.css">
+</head>
+<body style="background: transparent; padding: 0; margin: 0;">
+    <div class="modal-content" style="max-width: 100%; margin: 0; box-shadow: none;">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nuevo Estudiante</h2>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        
+        <form id="studentForm" onsubmit="saveStudent(event)">
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipoDocumento">Tipo de Documento *</label>
+                        <select id="tipoDocumento" name="tipoDocumento" required>
+                            <option value="">Seleccione...</option>
+                            <option value="CC">Cédula de Ciudadanía</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                            <option value="CE">Cédula de Extranjería</option>
+                            <option value="PA">Pasaporte</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numeroDocumento">Número de Documento *</label>
+                        <input 
+                            type="text" 
+                            id="numeroDocumento" 
+                            name="numeroDocumento" 
+                            required
+                            placeholder="Ej: 1234567890"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="primerNombre">Primer Nombre *</label>
+                        <input 
+                            type="text" 
+                            id="primerNombre" 
+                            name="primerNombre" 
+                            required
+                            placeholder="Ej: Juan"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="segundoNombre">Segundo Nombre</label>
+                        <input 
+                            type="text" 
+                            id="segundoNombre" 
+                            name="segundoNombre"
+                            placeholder="Opcional"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="primerApellido">Primer Apellido *</label>
+                        <input 
+                            type="text" 
+                            id="primerApellido" 
+                            name="primerApellido" 
+                            required
+                            placeholder="Ej: Pérez"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="segundoApellido">Segundo Apellido</label>
+                        <input 
+                            type="text" 
+                            id="segundoApellido" 
+                            name="segundoApellido"
+                            placeholder="Opcional"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="correoElectronico">Correo Electrónico *</label>
+                        <input 
+                            type="email" 
+                            id="correoElectronico" 
+                            name="correoElectronico" 
+                            required
+                            placeholder="estudiante@universidad.edu.co"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="programa">Programa Académico *</label>
+                        <select id="programa" name="programa" required>
+                            <option value="">Seleccione...</option>
+                            <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
+                            <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+                            <option value="Administración de Empresas">Administración de Empresas</option>
+                            <option value="Contaduría Pública">Contaduría Pública</option>
+                            <option value="Derecho">Derecho</option>
+                            <option value="Psicología">Psicología</option>
+                            <option value="Medicina">Medicina</option>
+                            <option value="Enfermería">Enfermería</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="numeroTelefonico">Número Telefónico</label>
+                        <input 
+                            type="tel" 
+                            id="numeroTelefonico" 
+                            name="numeroTelefonico"
+                            placeholder="Ej: 3001234567"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numeroRegistro">Número de Registro *</label>
+                        <input 
+                            type="text" 
+                            id="numeroRegistro" 
+                            name="numeroRegistro" 
+                            required
+                            placeholder="Ej: 2024001"
+                        >
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>ℹ️ Importante:</strong> La contraseña del estudiante será su número de documento.
+                </div>
+
+                <div id="formAlert" class="alert" style="display: none;"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeModal()">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary" id="btnSubmit">
+                    💾 Guardar Estudiante
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+
+        function closeModal() {
+            window.parent.postMessage({ action: 'closeModal' }, '*');
+        }
+
+        async function saveStudent(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            const data = {
+                tipoDocumento: formData.get('tipoDocumento'),
+                numeroDocumento: formData.get('numeroDocumento'),
+                primerNombre: formData.get('primerNombre'),
+                segundoNombre: formData.get('segundoNombre') || null,
+                primerApellido: formData.get('primerApellido'),
+                segundoApellido: formData.get('segundoApellido') || null,
+                correoElectronico: formData.get('correoElectronico'),
+                numeroTelefonico: formData.get('numeroTelefonico') || null,
+                numeroRegistro: formData.get('numeroRegistro'),
+                programa: formData.get('programa')
+            };
+            
+            try {
+                const btnSubmit = document.getElementById('btnSubmit');
+                btnSubmit.disabled = true;
+                btnSubmit.textContent = '⏳ Guardando...';
+                
+                const response = await fetch(`${API_BASE}/auth/crear-estudiante`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.exito) {
+                    showFormAlert('✅ Estudiante creado exitosamente', 'success');
+                    
+                    setTimeout(() => {
+                        window.parent.postMessage({ action: 'studentCreated' }, '*');
+                    }, 1500);
+                } else {
+                    showFormAlert('❌ ' + result.mensaje, 'error');
+                    btnSubmit.disabled = false;
+                    btnSubmit.textContent = '💾 Guardar Estudiante';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showFormAlert('❌ Error al crear estudiante', 'error');
+                
+                const btnSubmit = document.getElementById('btnSubmit');
+                btnSubmit.disabled = false;
+                btnSubmit.textContent = '💾 Guardar Estudiante';
+            }
+        }
+
+        function showFormAlert(message, type) {
+            const alert = document.getElementById('formAlert');
+            
+            if (!alert) return;
+            
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            alert.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

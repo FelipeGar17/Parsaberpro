@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información Saber PRO | Portal Estudiante</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="css/estudiante.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">🎓</div>
+                <h2 class="sidebar-title">Saber PRO</h2>
+                <p class="sidebar-subtitle">Portal del Estudiante</p>
+            </div>
+
+            <nav>
+                <ul class="sidebar-menu">
+                    <li class="menu-item">
+                        <a href="dashboard.html">
+                            <span class="menu-icon">🏠</span>
+                            <span class="menu-text">Inicio</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="resultados.html">
+                            <span class="menu-icon">📊</span>
+                            <span class="menu-text">Mis Resultados</span>
+                        </a>
+                    </li>
+                    <li class="menu-item active">
+                        <a href="informacion.html">
+                            <span class="menu-icon">ℹ️</span>
+                            <span class="menu-text">Información Saber PRO</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="connection-status connected">
+                    <span class="status-dot connected"></span>
+                    <span>Conectado</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Información Saber PRO</h1>
+                    <p>Conoce todo sobre los beneficios y el proceso de aplicación</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">E</div>
+                        <div class="user-details">
+                            <span class="user-name" id="userFullName">Estudiante</span>
+                            <span class="user-role">Estudiante</span>
+                        </div>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">
+                        🚪
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Acuerdo Oficial -->
+                <div class="info-section">
+                    <h2>📜 Acuerdo No. 01-009 del Consejo Directivo</h2>
+                    <p style="color: #6b7280; font-style: italic; margin-bottom: 2rem;">
+                        22 de abril de 2024
+                    </p>
+                    
+                    <h3>🎯 Beneficios según Puntaje Saber PRO (0-300 puntos)</h3>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 1.5rem;">
+                        <div style="display: grid; gap: 1.5rem;">
+                            <!-- Rango 180-210 -->
+                            <div style="padding: 1.5rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 12px; border-left: 4px solid #3b82f6;">
+                                <h4 style="font-size: 1.25rem; color: #1e40af; margin-bottom: 1rem;">
+                                    📊 Puntaje entre 180 y 210 puntos
+                                </h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="color: #3b82f6; font-size: 1.25rem;">✓</span>
+                                        <span>Exoneración de la entrega del informe final de trabajo de grado o de realizar Seminario de grado IV</span>
+                                    </li>
+                                    <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                        <span style="color: #3b82f6; font-size: 1.25rem;">📝</span>
+                                        <span><strong>Nota asignada: 4.5</strong></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Rango 211-240 -->
+                            <div style="padding: 1.5rem; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 12px; border-left: 4px solid #10b981;">
+                                <h4 style="font-size: 1.25rem; color: #065f46; margin-bottom: 1rem;">
+                                    📊 Puntaje entre 211 y 240 puntos
+                                </h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="color: #10b981; font-size: 1.25rem;">✓</span>
+                                        <span>Exoneración de la entrega del informe final de trabajo de grado o de realizar Seminario de grado IV</span>
+                                    </li>
+                                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="color: #10b981; font-size: 1.25rem;">📝</span>
+                                        <span><strong>Nota asignada: 4.7</strong></span>
+                                    </li>
+                                    <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                        <span style="color: #10b981; font-size: 1.25rem;">🎓</span>
+                                        <span><strong>Beca del 50% en el valor de derechos de grado</strong></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Rango 241+ -->
+                            <div style="padding: 1.5rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; border-left: 4px solid #f59e0b;">
+                                <h4 style="font-size: 1.25rem; color: #92400e; margin-bottom: 1rem;">
+                                    📊 Puntaje superior a 241 puntos
+                                </h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="color: #f59e0b; font-size: 1.25rem;">✓</span>
+                                        <span>Exoneración de la entrega del informe final de trabajo de grado o de realizar Seminario de grado IV</span>
+                                    </li>
+                                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                        <span style="color: #f59e0b; font-size: 1.25rem;">📝</span>
+                                        <span><strong>Nota asignada: 5.0</strong></span>
+                                    </li>
+                                    <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                        <span style="color: #f59e0b; font-size: 1.25rem;">🎓</span>
+                                        <span><strong>Beca del 100% en el valor de derechos de grado</strong></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proceso de Aplicación -->
+                <div class="info-section">
+                    <h2>📋 Proceso para Aplicar a Beneficios</h2>
+                    <p>Sigue estos pasos para hacer efectivos tus beneficios según tu puntaje:</p>
+                    
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Paso 1: Verifica tu puntaje</strong>
+                                <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
+                                    Consulta tus resultados oficiales en la sección "Mis Resultados" de este portal.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Paso 2: Contacta coordinación académica</strong>
+                                <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
+                                    Acércate a la oficina de coordinación con tu documento de identidad y número de registro.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Paso 3: Presenta documentación</strong>
+                                <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
+                                    Lleva una copia impresa de tus resultados y los documentos que te solicite coordinación.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Paso 4: Firma de acuerdos</strong>
+                                <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
+                                    Formaliza tu beneficio mediante la firma de los documentos institucionales correspondientes.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Paso 5: Aplicación del beneficio</strong>
+                                <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
+                                    Una vez aprobado, el beneficio se aplicará automáticamente en tu proceso de grado.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Información Importante -->
+                <div class="info-section">
+                    <h2>⚠️ Información Importante</h2>
+                    
+                    <div class="alert alert-warning" style="margin-bottom: 2rem;">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <h3>Requisito Mínimo para Graduación</h3>
+                            <p>Los estudiantes que obtengan un resultado <strong>inferior a 80 puntos no podrán graduarse</strong>, razón por la cual, la preparación y presentación de las pruebas de estado se debe realizar con la misma seriedad, interés e importancia que cualquiera de las asignaturas que se toman semestre a semestre.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>📋 Condiciones para Estudiantes Exonerados</h3>
+                    <p>Aquellos estudiantes sobresalientes que hayan sido eximidos de entrega de informe final de trabajo de grado, deben cumplir con lo siguiente:</p>
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Propuesta de trabajo de grado</strong>
+                                <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
+                                    Deben haber presentado y aprobado la propuesta de trabajo de grado.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Exoneración de Seminario II o IV</strong>
+                                <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
+                                    En caso de haber sido exonerado de Seminario II o IV, debe haber matriculado estos, realizando los pagos correspondientes.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <h3>🕐 Vigencia y Condiciones</h3>
+                    <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="padding: 0.5rem 0; display: flex; align-items: flex-start; gap: 1rem; background: transparent; margin: 0;">
+                                <span style="color: #f59e0b; font-size: 1.25rem;">⏰</span>
+                                <span style="flex: 1;"><strong>Vigencia:</strong> Este incentivo tiene una vigencia de <strong>un (1) año</strong> a partir de la fecha de publicación de resultados por parte del Icfes.</span>
+                            </li>
+                            <li style="padding: 0.5rem 0; display: flex; align-items: flex-start; gap: 1rem; background: transparent; margin: 0;">
+                                <span style="color: #f59e0b; font-size: 1.25rem;">🚫</span>
+                                <span style="flex: 1;"><strong>No acumulables:</strong> Estos incentivos no son acumulables entre sí.</span>
+                            </li>
+                            <li style="padding: 0.5rem 0; display: flex; align-items: flex-start; gap: 1rem; background: transparent; margin: 0;">
+                                <span style="color: #f59e0b; font-size: 1.25rem;">🔒</span>
+                                <span style="flex: 1;"><strong>Intransferibles:</strong> Los beneficios son personales e intransferibles.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Incentivos Generales -->
+                <div class="info-section">
+                    <h2>🎁 Incentivos Generales por Presentar la Prueba</h2>
+                    <p>Además de los beneficios institucionales, presentar las pruebas Saber PRO te brinda:</p>
+                    
+                    <div style="display: grid; gap: 1rem; margin-top: 1.5rem;">
+                        <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3b82f6;">
+                            <h4 style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🎓</span>
+                                <span>Ayuda para Estudios de Posgrado</span>
+                            </h4>
+                            <p style="margin: 0; color: #1e40af;">
+                                Mediante la asignación de becas parciales o totales para la continuación de estudios de especialización, maestría y/o doctorado.
+                            </p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #10b981;">
+                            <h4 style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">💼</span>
+                                <span>Mejores Oportunidades Laborales</span>
+                            </h4>
+                            <p style="margin: 0; color: #065f46;">
+                                Grandes empresas valoran significativamente dentro de los procesos de selección a aquellos aspirantes que obtuvieron puntajes destacados en las pruebas de estado.
+                            </p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                            <h4 style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">💰</span>
+                                <span>Condonación de Deudas</span>
+                            </h4>
+                            <p style="margin: 0; color: #92400e;">
+                                Para estudiantes que realizaron sus estudios de pregrado con ayuda de créditos del Icetex.
+                            </p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fae8ff 0%, #f3e8ff 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #a855f7;">
+                            <h4 style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <span style="font-size: 1.5rem;">🏆</span>
+                                <span>Noche de los Mejores</span>
+                            </h4>
+                            <p style="margin: 0; color: #6b21a8;">
+                                Ceremonia especial donde son invitados los mejores puntajes de las pruebas de estado y reciben una mención de honor.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dirigido a -->
+                <div class="info-section">
+                    <h2>🎯 ¿A Quién está Dirigido?</h2>
+                    <p>Las pruebas Saber PRO están dirigidas a:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border-top: 4px solid #3b82f6;">
+                            <div style="text-align: center; margin-bottom: 1rem;">
+                                <span style="font-size: 3rem;">📚</span>
+                            </div>
+                            <h4 style="text-align: center; margin-bottom: 0.5rem;">Programas Tecnológicos</h4>
+                            <p style="text-align: center; color: #6b7280; margin: 0;">
+                                Estudiantes de <strong>sexto semestre</strong>
+                            </p>
+                        </div>
+                        
+                        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border-top: 4px solid #10b981;">
+                            <div style="text-align: center; margin-bottom: 1rem;">
+                                <span style="font-size: 3rem;">🎓</span>
+                            </div>
+                            <h4 style="text-align: center; margin-bottom: 0.5rem;">Programas Profesionales</h4>
+                            <p style="text-align: center; color: #6b7280; margin: 0;">
+                                Estudiantes de <strong>décimo semestre</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="info-section">
+                    <h2>📞 Contacto</h2>
+                    <p>Para más información sobre el proceso de aplicación a beneficios, puedes contactar a:</p>
+                    <div style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
+                        <p style="margin: 0.5rem 0;"><strong>Coordinación Académica</strong></p>
+                        <p style="margin: 0.5rem 0; color: #6b7280;">Correo: coordinacion@institucion.edu.co</p>
+                        <p style="margin: 0.5rem 0; color: #6b7280;">Teléfono: (057) 123-4567</p>
+                        <p style="margin: 0.5rem 0; color: #6b7280;">Horario: Lunes a Viernes, 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- Botón de retorno -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="dashboard.html" class="btn btn-outline">
+                        ← Volver al inicio
+                    </a>
+                    <a href="resultados.html" class="btn btn-primary" style="margin-left: 1rem;">
+                        📊 Ver mis resultados
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/informacion.js"></script>
+</body>
+</html>

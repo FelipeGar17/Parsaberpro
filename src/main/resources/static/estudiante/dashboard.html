@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Dashboard | Saber PRO</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="css/estudiante.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">🎓</div>
+                <h2 class="sidebar-title">Saber PRO</h2>
+                <p class="sidebar-subtitle">Portal del Estudiante</p>
+            </div>
+
+            <nav>
+                <ul class="sidebar-menu">
+                    <li class="menu-item active">
+                        <a href="dashboard.html">
+                            <span class="menu-icon">🏠</span>
+                            <span class="menu-text">Inicio</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="resultados.html">
+                            <span class="menu-icon">📊</span>
+                            <span class="menu-text">Mis Resultados</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="informacion.html">
+                            <span class="menu-icon">ℹ️</span>
+                            <span class="menu-text">Información Saber PRO</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="connection-status connected">
+                    <span class="status-dot connected"></span>
+                    <span>Conectado</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Bienvenido, <span id="userName">Estudiante</span></h1>
+                    <p>Consulta tu información y resultados del Saber PRO</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">E</div>
+                        <div class="user-details">
+                            <span class="user-name" id="userFullName">Estudiante</span>
+                            <span class="user-role">Estudiante</span>
+                        </div>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">
+                        🚪
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Alerta si no tiene puntajes -->
+                <div class="alert alert-info" id="alertSinPuntajes" style="display: none;">
+                    <div class="alert-icon">📋</div>
+                    <div class="alert-content">
+                        <h3>Resultados en proceso</h3>
+                        <p>Aún no tienes resultados registrados. Los puntajes estarán disponibles cuando el coordinador los registre en el sistema.</p>
+                    </div>
+                </div>
+
+                <!-- Alerta de examen anulado -->
+                <div class="alert alert-danger" id="alertAnulado" style="display: none;">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h3>Examen Anulado</h3>
+                        <p>Tu examen fue anulado. Por favor contacta con coordinación para conocer los próximos pasos y aclaraciones.</p>
+                    </div>
+                </div>
+
+                <!-- Alerta de puntaje bajo -->
+                <div class="alert alert-warning" id="alertPuntajeBajo" style="display: none;">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h3>Puntaje por debajo del mínimo</h3>
+                        <p>Tu puntaje no cumple con el requisito mínimo para optar al grado. Comunícate con coordinación académica.</p>
+                    </div>
+                </div>
+
+                <!-- Información Personal -->
+                <div class="info-card">
+                    <div class="card-header">
+                        <div class="card-icon">👤</div>
+                        <h2 class="card-title">Mi Información</h2>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div>
+                                <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Documento</p>
+                                <p style="font-size: 1rem; font-weight: 600;" id="infoDocumento">-</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Correo Electrónico</p>
+                                <p style="font-size: 1rem; font-weight: 600;" id="infoCorreo">-</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Teléfono</p>
+                                <p style="font-size: 1rem; font-weight: 600;" id="infoTelefono">-</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Programa Académico</p>
+                                <p style="font-size: 1rem; font-weight: 600;" id="infoPrograma">-</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Número de Registro</p>
+                                <p style="font-size: 1rem; font-weight: 600;" id="infoRegistro">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen de Puntaje -->
+                <div id="resumenPuntaje" style="display: none;">
+                    <div class="puntaje-total">
+                        <p class="puntaje-label">Puntaje Total</p>
+                        <div class="puntaje-valor" id="puntajeTotal">0</div>
+                        <p class="puntaje-maximo">/ 300 puntos</p>
+                    </div>
+
+                    <!-- Beneficios Aplicables -->
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-icon">🎯</div>
+                            <h2 class="card-title">Beneficios Disponibles</h2>
+                        </div>
+                        <div class="card-body" id="beneficiosContainer">
+                            <!-- Se llena dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Botón para ver resultados detallados -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="resultados.html" class="btn btn-primary">
+                            📊 Ver Resultados Detallados
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

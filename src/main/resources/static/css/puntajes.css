@@ -1,0 +1,410 @@
+/* ========================================
+   ESTILOS GESTIÓN DE PUNTAJES
+   ======================================== */
+
+/* Cards */
+.puntajes-form-card,
+.estudiantes-status-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.card-header p {
+    margin: 0.5rem 0 0 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Search Student Section */
+.search-student-section {
+    margin-bottom: 2rem;
+}
+
+.search-input-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.search-input-group input {
+    flex: 1;
+}
+
+/* Estudiante Info Card */
+.estudiante-info {
+    margin-top: 1.5rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-card {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    color: white;
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-icon {
+    font-size: 1.5rem;
+}
+
+.info-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.info-body p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.info-body strong {
+    font-weight: 600;
+}
+
+/* Puntajes Grid */
+.puntajes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.puntaje-item {
+    position: relative;
+}
+
+.puntaje-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.puntaje-item input {
+    width: 100%;
+    padding: 0.875rem;
+    border: 2px solid #e5e7eb;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.puntaje-item input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Puntaje Global destacado */
+.puntaje-global {
+    grid-column: 1 / -1;
+}
+
+.puntaje-global input {
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-width: 3px;
+    padding: 1rem;
+}
+
+/* Nivel Badge */
+.nivel-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.nivel-badge.nivel-1 {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.nivel-badge.nivel-2 {
+    background: #fed7aa;
+    color: #9a3412;
+}
+
+.nivel-badge.nivel-3 {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.nivel-badge.nivel-4 {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.nivel-badge.nivel-5 {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.nivel-badge.anulado {
+    background: #fecaca;
+    color: #991b1b;
+    font-weight: 700;
+}
+
+/* Checkbox Anulado */
+.anulado-section {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #fef2f2;
+    border: 2px solid #fecaca;
+    border-radius: var(--radius-md);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    padding-left: 35px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: white;
+    border: 2px solid #dc2626;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover .checkmark {
+    background-color: #fee2e2;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #dc2626;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label {
+    color: #991b1b;
+    font-size: 1rem;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Stats Pills */
+.stats-pills {
+    display: flex;
+    gap: 1rem;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    background: #f3f4f6;
+}
+
+.pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.pill-success {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.pill-success .pill-dot {
+    background: #10b981;
+}
+
+.pill-warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.pill-warning .pill-dot {
+    background: #f59e0b;
+}
+
+/* Status Table */
+.status-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.status-table thead {
+    background: linear-gradient(135deg, #4b5563, #374151);
+    color: white;
+}
+
+.status-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.status-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.status-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* Badges en tabla */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge-success {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.badge-warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* Action Button in Table */
+.btn-action-table {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: var(--radius-md);
+}
+
+/* Empty State */
+.empty-state-cell {
+    text-align: center;
+    padding: 3rem 1rem !important;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state-cell p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .puntajes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .stats-pills {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .pill {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+    
+    .search-input-group {
+        flex-direction: column;
+    }
+}
